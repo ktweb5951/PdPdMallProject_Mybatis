@@ -79,10 +79,14 @@
 				 <% } %>
 				<ul>
 					<li>
-				      <% if (session.getAttribute("memberId") != null) { %>
+						
+					
+				      <% 			      
+				      if (session.getAttribute("memberId") != null) { %>
 				                <div id="loginDiv">
 				                    <%-- 로그인 상태일 때 마이페이지로 이동하는 링크 추가 --%>
-				                    반갑습니다 ${member.memberId}<a href="/member/myInfo.do">[마이페이지]</a>
+				                     반갑습니다 <%= session.getAttribute("memberId") %>님 <a href="/member/myInfo.do?member-id=<%= session.getAttribute("memberId") %>"><br>[마이페이지]</a>
+<%-- 				                    반갑습니다 ${member.memberId}<a href="/member/myInfo.do?member-id=${member.memberId}">[마이페이지]</a> --%>
 				                    <form action="/member/logout.do" method="get">
 <!-- 				                        <input id="btnLogout" type="submit" value="logout"> -->
 				                    </form>

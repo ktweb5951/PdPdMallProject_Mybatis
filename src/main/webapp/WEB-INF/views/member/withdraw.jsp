@@ -49,12 +49,12 @@
 		<main>
 			<aside>
 				<h1>마이페이지</h1>
-				<ul class="myPage">
-					<li><a href="#" onclick="loadPage('modifyMemberInfo.jsp')">프로필</a></li>
-					<li><a href="#" onclick="loadPage('거래내역.html')">거래내역</a></li>
-					<li><a href="/member/update.do?member-id=${memberId}">회원정보수정</a></li>
-					<li><a href="/member/withdraw.do?member-id=${memberId}">회원탈퇴</a></li>
-				</ul>
+                    <ul class="myPage">
+                        <li><a href="/member/myInfo.do?member-id=${memberId}">프로필</a></li>
+                        <li><a href="#" onclick="loadPage('거래내역.html')">거래내역</a></li>
+                        <li><a href="/member/update.do?member-id=${memberId}">회원정보수정</a></li>
+                        <li><a href="/member/withdraw.do?member-id=${memberId}">회원탈퇴</a></li>
+                    </ul>
 			</aside>
 			<section id="main-content">
 				<!-- 회원탈퇴 페이지 내용 -->

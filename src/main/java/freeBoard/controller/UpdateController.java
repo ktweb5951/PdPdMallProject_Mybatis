@@ -58,7 +58,7 @@ public class UpdateController extends HttpServlet {
 		FreeBoardService service = new FreeBoardService();
 		int result = service.updateFreeBoard(freeBoard);
 		if(result>0) {
-			response.sendRedirect("/bulletinBoard/freeBoard/list.do");
+			response.sendRedirect("/bulletinBoard/freeBoard/list.do?currentPage=1");
 		} else {
 			request.setAttribute("msg", "공지사항 수정이 완료되지 않았습니다.");
 			request.getRequestDispatcher("/WEB-INF/views/common/serviceFaild.jsp").forward(request, response);

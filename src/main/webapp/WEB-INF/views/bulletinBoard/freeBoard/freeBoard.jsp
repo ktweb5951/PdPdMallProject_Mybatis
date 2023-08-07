@@ -56,8 +56,15 @@
 				</section>
 				<section id="pageNavi">${pageNavi }</section>
 				<section id="btnArea">
-					<div>
-						<a class="write-btn" href="/bulletinBoard/freeBoard/insert.do">글작성</a>
+					<div>  
+					<% 			      
+				      if (session.getAttribute("memberId") != null) { %>
+				              <a class="write-btn" href="/bulletinBoard/freeBoard/insert.do">글작성</a>
+				      <% } else { %>
+							<a id="write-btn" class="write-btn" href="/member/login.do">글작성</a>
+							
+				       <% } %>
+						
 					</div>
 				</section>
 			</main>
@@ -67,7 +74,6 @@
 		</div>
 	
 		<script>
-			
 		</script>
 	</body>
 </html>

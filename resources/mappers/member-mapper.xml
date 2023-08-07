@@ -17,24 +17,24 @@
  	</resultMap>
  
  	<insert id="insertMember" >
- 		INSERT INTO MALLMEMBER VALUES(#{memberId},#{memberPw},#{memberName},#{memberNickname},#{memberPhone},#{memberAddress},#{postalCodeOne},#{postalCodeTwo},#{memberEmail}, DEFAULT)
+ 		INSERT INTO MALLMEMBER_TBL VALUES(#{memberId},#{memberPw},#{memberName},#{memberNickname},#{memberPhone},#{memberAddress},#{postalCodeOne},#{postalCodeTwo},#{memberEmail}, DEFAULT)
  	</insert>
 
  	<update id="updateMember">
- 		UPDATE MALLMEMBER SET MEMBER_PW=#{memberPw},MEMBER_PHONE=#{memberPhone }, MEMBER_ADDRESS=#{memberAddress}, MEMBER_POST1=#{postalCodeOne}, MEMBER_POST2=#{postalCodeTwo}, MEMBER_EMAIL=#{memberEmail} WHERE MEMBER_ID=#{memberId}
+ 		UPDATE MALLMEMBER_TBL SET MEMBER_PW=#{memberPw},MEMBER_PHONE=#{memberPhone }, MEMBER_ADDRESS=#{memberAddress}, MEMBER_POST1=#{postalCodeOne}, MEMBER_POST2=#{postalCodeTwo}, MEMBER_EMAIL=#{memberEmail} WHERE MEMBER_ID=#{memberId}
  	</update>
  	
  	<delete id="deleteMember">
- 		DELETE FROM MALLMEMBER WHERE MEMBER_ID = #{memberId}
+ 		DELETE FROM MALLMEMBER_TBL WHERE MEMBER_ID = #{memberId}
  	</delete>
  	
  	
  	<select id="selectCheckLogin" resultMap="memberResultMap">
- 		SELECT * FROM MALLMEMBER WHERE MEMBER_ID=#{memberId} AND MEMBER_PW=#{memberPw}
+ 		SELECT * FROM MALLMEMBER_TBL WHERE MEMBER_ID=#{memberId} AND MEMBER_PW=#{memberPw}
  	</select>
  	
  	<select id="selectOneById" resultMap="memberResultMap">
- 		SELECT * FROM MALLMEMBER WHERE MEMBER_ID=#{memberId}
+ 		SELECT * FROM MALLMEMBER_TBL WHERE MEMBER_ID=#{memberId}
  	</select>
  
   </mapper>

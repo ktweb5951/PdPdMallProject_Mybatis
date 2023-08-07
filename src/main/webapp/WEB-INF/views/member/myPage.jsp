@@ -6,6 +6,7 @@
 
     <head>
     	<jsp:include page="/WEB-INF/views/common/asideHead.jsp"></jsp:include>
+    	 <link rel="stylesheet" href="../../resources/css/member/modifyMemberInfo.css">
         <title>마이 페이지</title>
     </head>
 
@@ -18,7 +19,7 @@
                 <aside>
                     <h1>마이페이지</h1>
                     <ul class="myPage">
-                        <li><a href="/member/list.do?member-id=${memberId})">프로필</a></li>
+                        <li><a href="/member/myInfo.do?member-id=${memberId}">프로필</a></li>
                         <li><a href="#" onclick="loadPage('거래내역.html')">거래내역</a></li>
                         <li><a href="/member/update.do?member-id=${memberId}">회원정보수정</a></li>
                         <li><a href="/member/withdraw.do?member-id=${memberId}">회원탈퇴</a></li>
@@ -28,7 +29,7 @@
 		            <div class="member-form">
 		                <div class="top">
 		                    <img src="../../resources/images/components/logoimage2.png" alt="">
-		                    <h2>회원 정보 수정</h2>
+		                    <h2>프로필</h2>
 		                </div>
 		                <form action="/member/update.do" method="post" id="memberForm">
 		                    <ul>
@@ -51,23 +52,18 @@
 		                            <label>핸드폰번호</label>
 		                            <div>
 		                                <input type="text" id="member-phone" name="member-phone" value="${member.memberPhone}">
-		                                <button class="certifiedBtn">인증받기</button>
 		                            </div>                                 
-		                            <div>
-		                                <input type="text" id="tel-certified" placeholder="인증번호를 입력하세요">
-		                            </div>
 		                        </li>
 		                        <li>
 		                            <label>주소</label>
 		                            <div>
 		                                <input type="text" id="addr" name="member-address" value="${member.memberAddress}">
-		                                <button onclick="addrSearch();">주소검색</button>
 		                            </div>
 		                        </li>
 		                        <li>
 		                            <label>우편번호</label>
 		                            <div>
-		                                <input type="text" size="5" id="post-1" name="post-1" vlaue="${member.postalCodeOne}"> - <input type="text" size="5" id="post-2" name="post-2" vlaue="${member.postalCodeTwo}"> 
+		                                <input type="text" size="5" id="post-1" name="post-1" value="${member.postalCodeOne}"> - <input type="text" size="5" id="post-2" name="post-2" value="${member.postalCodeTwo}"> 
 		                            </div>
 		                        </li>
 		                        <li>
