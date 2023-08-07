@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="FreeBoardMapper">
+ 	<resultMap type="freeBoard.model.vo.FreeBoard" id="freeBoardResultMap">
+ 		<id property="freeBoardNo" column="FREEBOARD_NO" />
+ 		<result property="freeBoardTitle" column="FREEBOARD_TITLE" />
+ 		<result property="freeBoardContent" column="FREEBOARD_CONTENT" />
+ 		<result property="freeBoardWriter" column="FREEBOARD_WRITER" />
+ 		<result property="viewCount" column="VIEW_COUNT" />
+ 		<result property="rcmndCount" column="RCMND_COUNT" />
+ 		<result property="freeBoardDate" column="FREEBOARD_DATE" />
+ 		<result property="updateDate" column="UPDATE_DATE" />
+ 	</resultMap>
+ 
+  	<insert id="insertFreeBoard" >
+ 		INSERT INTO FREEBOARD_TBL VALUES(SEQ_FREEBOARDNO.NEXTVAL,#{freeBoardTitle},#{freeBoardContent},#{freeBoardWriter},DEFAULT,DEFAULT,DEFAULT,DEFAULT)
+ 	</insert>
+ 	
+ 	<update id="updateFreeBoard">
+ 		UPDATE FREEBOARD_TBL SET FREEBOARD_TITLE=#{freeBoardTitle}, FREEBOARD_CONTENT=#{freeBoardContent} WHERE FREEBOARD_NO=#{freeBoardNo}
+ 	</update>
+ 	
+ 	<delete id="deleteFreeBoard">
+ 		DELETE FROM FREEBOARD_TBL WHERE FREEBOARD_NO=#{freeBoardNo}
+ 	</delete>
+ 
+ 	<select id="selectFreeBoardList" resultMap="freeBoardResultMap">
+		SELECT * FROM FREEBOARD_TBL ORDER BY FREEBOARD_NO DESC
+	</select>
+	
+	 <select id="selectOneByNo" resultMap="freeBoardResultMap">
+		SELECT * FROM FREEBOARD_TBL WHERE FREEBOARD_NO = #{freeBoardNo}
+	</select>
+ 
+ </mapper>
