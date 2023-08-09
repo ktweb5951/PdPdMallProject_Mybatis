@@ -14,6 +14,22 @@ import freeBoard.model.vo.FreeBoard;
 
 public class FreeBoardDAO {
 
+	public int insertFreeBoard(SqlSession session, FreeBoard freeBoard) {
+			int result = session.insert("FreeBoardMapper.insertFreeBoard", freeBoard);
+	//		String query = "INSERT INTO NOTICE_TBL VALUES(SEQ_NOTICENO.NEXTVAL,?,?,'admin',DEFAULT,DEFAULT,DEFAULT)";
+			return result;
+		}
+
+	public int updateFreeBoard(SqlSession session, FreeBoard freeBoard) {
+		int result = session.insert("FreeBoardMapper.updateFreeBoard", freeBoard);
+		return result;
+	}
+
+	public int deleteFreeBoard(SqlSession session, FreeBoard freeBoard) {
+		int result = session.insert("FreeBoardMapper.deleteFreeBoard", freeBoard);
+		return result;
+	}
+
 	public List<FreeBoard> selectFreeBoardList(SqlSession session, int currentPage) {
 		int  limit = 10;
 		int offset = (currentPage-1)*limit;
@@ -36,8 +52,13 @@ public class FreeBoardDAO {
 //		return freeBoard;
 //	}
 
-	public String generatePageNavi(int currentPage) {
-		int totalCount = 200;
+	public FreeBoard selectOneByNo(SqlSession session, int freeBoardNo) {
+		FreeBoard freeBoard = session.selectOne("FreeBoardMapper.selectOneByNo",freeBoardNo );
+		return freeBoard;
+	}
+
+	public String generatePageNavi(SqlSession session, int currentPage) {
+		int totalCount = getTotalCount(session);
 		int recordCountPerPage = 10;
 		int naviTotalCount = 0;
 		if(totalCount % recordCountPerPage > 0) {
@@ -74,25 +95,10 @@ public class FreeBoardDAO {
 		return result.toString();
 	}
 
-	public int insertFreeBoard(SqlSession session, FreeBoard freeBoard) {
-		int result = session.insert("FreeBoardMapper.insertFreeBoard", freeBoard);
-//		String query = "INSERT INTO NOTICE_TBL VALUES(SEQ_NOTICENO.NEXTVAL,?,?,'admin',DEFAULT,DEFAULT,DEFAULT)";
-		return result;
+	private int getTotalCount(SqlSession session) {
+		int totalCount = session.selectOne("FreeBoardMapper.getTotalCount");
+		return totalCount;
 	}
 
-	public FreeBoard selectOneByNo(SqlSession session, int freeBoardNo) {
-		FreeBoard freeBoard = session.selectOne("FreeBoardMapper.selectOneByNo",freeBoardNo );
-		return freeBoard;
-	}
-
-	public int updateFreeBoard(SqlSession session, FreeBoard freeBoard) {
-		int result = session.insert("FreeBoardMapper.updateFreeBoard", freeBoard);
-		return result;
-	}
-
-	public int deleteFreeBoard(SqlSession session, FreeBoard freeBoard) {
-		int result = session.insert("FreeBoardMapper.deleteFreeBoard", freeBoard);
-		return result;
-	}
 
 }

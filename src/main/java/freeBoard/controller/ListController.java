@@ -34,13 +34,21 @@ public class ListController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		FreeBoardService service = new FreeBoardService();
-		int currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		String page = request.getParameter("currentPage") != null ? request.getParameter("currentPage") : "1";
+		int currentPage = Integer.parseInt(page);
 		PageData pd= service.selectFreeBoardList(currentPage);
 		List<FreeBoard> fList = pd.getfList();
-		request.setAttribute("fList", fList);
-		request.setAttribute("pageNavi", pd.getPageNavi());
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/bulletinBoard/freeBoard/freeBoard.jsp");
-		view.forward(request, response);
+		String pageNavi = pd.getPageNavi();
+		if(!fList.isEmpty()) {
+			request.setAttribute("fList", fList);
+			request.setAttribute("pageNavi", pageNavi);
+			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/bulletinBoard/freeBoard/freeBoard.jsp");
+			view.forward(request, response);		
+		} else {
+			request.setAttribute("msg", "데이터 조회가 완료되지 않았습니다.");
+			request.setAttribute("url", "/idnex.jsp");
+			request.getRequestDispatcher("/WEB-INF/views/common/serviceFailed").forward(request, response);
+		}
 	}
 
 	/**

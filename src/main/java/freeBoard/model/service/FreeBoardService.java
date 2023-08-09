@@ -68,7 +68,7 @@ public class FreeBoardService {
 	public PageData selectFreeBoardList(int currentPage) {
 		SqlSession session = SqlSessionTemplate.getSqlSession();
 		List<FreeBoard> fList = fDao.selectFreeBoardList(session, currentPage);
-		String pageNavi = fDao.generatePageNavi(currentPage);
+		String pageNavi = fDao.generatePageNavi(session, currentPage);
 		PageData pd = new PageData(fList, pageNavi);
 		session.close();
 		return pd;
