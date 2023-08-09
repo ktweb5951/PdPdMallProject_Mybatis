@@ -15,13 +15,12 @@
 			rel="stylesheet">
 		<link rel="stylesheet" href="../resources/css/index.css">
 		<link rel="stylesheet" href="../resources/css/reset.css">
-		<link rel="stylesheet" href="../resources/css/carousel.css">
-		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- 		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
 		<title>메인페이지</title>
-		
+
 	</head>
 	<body>
-	   
+
 		<div id="container">
 			<!-- 헤더 -->
 			<header>
@@ -134,7 +133,7 @@
 													</div>
 													<div>자급제</div>
 											</a></td>
-	
+
 										</tr>
 										<tr>
 											<td><a href="#">
@@ -362,70 +361,68 @@
 					</div>
 				</section>
 			</main>
-	
+
 			<!-- 푸터영역 -->
 			<footer>
 				<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 			</footer>
 		</div>
-		
-	
+
+
 		<!-- 스크립트 -->
 		<script>
-//         function loadHTML(url, element) {
-//             const xhttp = new XMLHttpRequest();
-//             xhttp.onreadystatechange = function() {
-//                 if (this.readyState === 4 && this.status === 200) {
-//                     const content = this.responseText;
-//                     element.innerHTML = content;
+			document.addEventListener("DOMContentLoaded", function() {
+			    const slides = document.querySelectorAll(".slide img");
+			    const prevBtn = document.querySelectorAll(".prev-btn")[0];
+			    const nextBtn = document.querySelectorAll(".next-btn")[0];
+			    let currentIndex = 0;
+			
+			    function showSlide(index) {
+			        for (let i = 0; i < slides.length; i++) {
+			            slides[i].style.display = "none";
+			        }
+			        slides[index].style.display = "block";
+			    }
+			
+			    function goToNextSlide() {
+			        currentIndex = (currentIndex + 1) % slides.length;
+			        showSlide(currentIndex);
+			    }
+			
+			    function goToPrevSlide() {
+			        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+			        showSlide(currentIndex);
+			    }
+			
+			    prevBtn.addEventListener("click", goToPrevSlide);
+			    nextBtn.addEventListener("click", goToNextSlide);
+			
+			    showSlide(currentIndex);
+			    setInterval(goToNextSlide, 5000);
+			});
 
-//                     // 포함된 자바스크립트 코드 실행
-//                     const scriptTags = element.getElementsByTagName("script");
-//                     for (var i = 0; i < scriptTags.length; i++) {
-//                         eval(scriptTags[i].innerText);
-//                     }
-//                 }
-//             };
-//             xhttp.open("GET", url, true);
-//             xhttp.send();
-//         }
-
-//         document.addEventListener("DOMContentLoaded", function() {
-//             const headerElement = document.querySelector("header");
-//             loadHTML("/components/header.jsp", headerElement);
-
-//             const footerElement = document.querySelector("footer");
-//             loadHTML("/components/footer.jsp", footerElement);
-//         });
-
-        $(document).ready(function() {
-            const slides = $(".slide img");
-            const prevBtn = $(".prev-btn");
-            const nextBtn = $(".next-btn");
-            let currentIndex = 0;
-
-            function showSlide(index) {
-              slides.fadeOut(1000);
-              slides.eq(index).fadeIn(1000);
-            }
-
-            function goToNextSlide() {
-              currentIndex = (currentIndex + 1) % slides.length;
-              showSlide(currentIndex);
-            }
-
-            function goToPrevSlide() {
-              currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-              showSlide(currentIndex);
-            }
-
-            prevBtn.click(goToPrevSlide);
-            nextBtn.click(goToNextSlide);
-
-            showSlide(currentIndex);
-
-            setInterval(goToNextSlide, 5000);
-          });
+//         $(document).ready(function() {
+//             const slides = $(".slide img");
+//             const prevBtn = $(".prev-btn");
+//             const nextBtn = $(".next-btn");
+//             let currentIndex = 0;
+//             function showSlide(index) {
+//               slides.fadeOut(1000);
+//               slides.eq(index).fadeIn(1000);
+//             }
+//             function goToNextSlide() {
+//               currentIndex = (currentIndex + 1) % slides.length;
+//               showSlide(currentIndex);
+//             }
+//             function goToPrevSlide() {
+//               currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+//               showSlide(currentIndex);
+//             }
+//             prevBtn.click(goToPrevSlide);
+//             nextBtn.click(goToNextSlide);
+//             showSlide(currentIndex);
+//             setInterval(goToNextSlide, 5000);
+//           });
 		</script>
 	</body>
 </html>
